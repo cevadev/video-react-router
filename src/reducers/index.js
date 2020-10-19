@@ -11,6 +11,12 @@ function reducer(state, action){
                 mylist: [...state.mylist, action.payload]
             }
 
+        case 'DELETE_FAVORITE':
+            return{
+                ...state,
+                mylist: state.mylist.filter(items => items.id !== action.payload)
+            }
+
         default:
             return state;
        
