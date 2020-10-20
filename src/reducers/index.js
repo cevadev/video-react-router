@@ -17,6 +17,14 @@ function reducer(state, action){
                 mylist: state.mylist.filter(items => items.id !== action.payload)
             }
 
+        case 'LOGIN_REQUEST':
+            return{
+                //respetamos el estado q tenemos
+                ...state,
+                //le pasamos al user el objeto que estamos creando en el action
+                user: action.payload
+            }
+
         default:
             return state;
        
