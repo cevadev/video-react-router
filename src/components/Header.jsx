@@ -3,16 +3,22 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+//validaciones
+import classNames from 'classnames';
+
 import { logoutRequest } from '../actions'
 import gravatar from '../utils/gravatar';
 import '../assets/styles/components/Header.scss';
 import logo from '../assets/static/logo-platzi-video-BW2.png';
 import userIcon from '../assets/static/user-icon.png';
 
-
+/**
+   * validamos si nos encontramos dentro del login y asi poder cambiar las propiedades que tiene el scss
+   * para ello traemos las propiedades del props isLogin, isRegister
+   */
 function Header(props){
   //objeto user
-  const { user } = props  ;
+  const { user, isLogin, isRegister } = props  ;
 
   //validamos si tenemos o no un user
   const hasUser = Object.keys(user).length > 0;
@@ -22,8 +28,21 @@ function Header(props){
     props.logoutRequest({});
   }
 
+  /**
+   * logica para cambiar las propiedades de clase en scss segun si esta login
+   * headerClass -> obtiene un objeto con el elemento que se va a respetar entodo el documento de scss en este caso header
+   */
+  const headerClass = classNames('header', {
+    //si isLogin is true, lo asignamos al header
+    isLogin,
+    //si isRegister is true, lo asignamos al header
+    isRegister
+  });
+
+  //reemplazamos el className por nuestra constante headerClass que ya posee el header como className pero tambien posee
+  //condiciones que si se cumplen van a mostrar un valor u otro
   return(
-    <header className="header">
+    <header className={headerClass}>
       <Link to="/">
         <img className="header__img" src={logo} alt="Platzi Video" />
       </Link>

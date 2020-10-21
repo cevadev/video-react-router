@@ -1,12 +1,14 @@
 import React  from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 //conectando con redux
 import { connect } from 'react-redux';
 import { registerRequest } from '../actions';
 
+import Header from '../components/Header';
+
 import '../assets/styles/components/Register.scss';
+
 
 function Register(props){
 
@@ -38,18 +40,21 @@ function Register(props){
     //fin React-Hooks
 
     return(
-        <section className="register">
-            <section className="register__container">
-            <h2>Regístrate</h2>
-            <form onSubmit={handleSubmit} className="register__container--form">
-                <input name="name" onChange={handleInput} className="input" type="text" placeholder="Nombre" />
-                <input name="email" onChange={handleInput} className="input" type="text" placeholder="Correo" />
-                <input name="password" onChange={handleInput} className="input" type="password" placeholder="Contraseña" />
-                <button type="submit" className="button">Registrarme</button>
-            </form>
-            <Link to="/login">Iniciar sesión</Link>
+        <React.Fragment>
+            <Header isRegister={true}/>
+            <section className="register">
+                <section className="register__container">
+                    <h2>Regístrate</h2>
+                    <form onSubmit={handleSubmit} className="register__container--form">
+                        <input name="name" onChange={handleInput} className="input" type="text" placeholder="Nombre" />
+                        <input name="email" onChange={handleInput} className="input" type="text" placeholder="Correo" />
+                        <input name="password" onChange={handleInput} className="input" type="password" placeholder="Contraseña" />
+                        <button type="submit" className="button">Registrarme</button>
+                    </form>
+                    <Link to="/login">Iniciar sesión</Link>
+                </section>
             </section>
-        </section>
+        </React.Fragment>
     )
 }
 
