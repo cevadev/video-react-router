@@ -37,6 +37,24 @@ function reducer(state, action){
                 user: action.payload
             }
 
+        case 'GET_VIDEO_SOURCE':
+            return{
+                ...state,
+                /**
+                 * Hacemos una busqueda (en los dos arreglos, trends y orginals) dentro de los arreglos de nuestros videos, es decir, 
+                 * que por medio del ID y regresamos
+                 * el ID que concida con el payload que estamos mandando
+                 * item -> representa los elementos que se encuentran dentro de trends.
+                 * item.id === action.payload -> obtenemos el elemento cuyo ID coincidan
+                 * El parametro id llega como un string por lo que debemos convertirlo a number para hacer la comparacion
+                 * si no se encuentra un elemento, retorna un array vacio
+                 */
+               /*  playing: state.trends.find(item => item === Number(action.payload)) ||
+                         state.originals.find(item => item === Number(action.payload)) ||
+                         [] */
+                playing: state.trends.concat(state.originals).find(item => item.id === Number(action.payload)) || []
+            }
+
         default:
             return state;
        
