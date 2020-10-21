@@ -12,12 +12,22 @@ import '../assets/styles/App.scss';
 
 //const API = 'http://localhost:3000/initalState'
 
-const Home = ({ mylist, trends, originals }) => {
+const Home = ({ mylist, trends, originals, search }) => {
   //const initialState = useInitialState(API);
   return(
     <React.Fragment>
       <Header />
       <Search isHome={true}/>
+      {search.length > 0 && (
+          <Categories title="Search">
+            <Carousel>
+              {search.map(item => (
+                <CarouselItem key={item.id} {...item} />
+              ))}
+            </Carousel>
+        </Categories>
+        )}
+
       {mylist.length > 0 &&
         <Categories title="Mi Lista">
           <Carousel>
@@ -50,7 +60,8 @@ function mapStateToProps(state){
   return{
     mylist: state.mylist,
     trends: state.trends,
-    originals: state.originals
+    originals: state.originals,
+    search: state.search
   }
 }
 /**

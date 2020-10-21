@@ -39,3 +39,10 @@ export const getVideoSource = (payload) =>(
         payload
     }
 );
+
+export const searchVideo = (payload) =>(
+    {
+        type: 'SET_SEARCH',
+        payload
+    }
+);

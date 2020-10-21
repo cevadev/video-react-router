@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore} from 'redux';
+import { createStore, compose } from 'redux';
 
 import App from './routes/App';
 import reducer from './reducers';
@@ -10,6 +10,7 @@ const initalState = {
     "user": {},
     "playing": {},
     "mylist": [],
+    "search": [],
     "trends": [
       {
         "id": 2,
@@ -172,13 +173,19 @@ const initalState = {
     ]
   }
 
+  /**
+   * funcion que permite escuchar dentro del navegador lo que estemos haciendo con redux
+   */
+  const composeEnhacers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
 /**
  * mantenemos una referencia a nuestro store.
  * Utlizamos el createStore para crear un nuevo store para pasarlo al provider. createStore recibe 2 parametros:
  * 1. reducer -> el reducer proviene de la carpeta reducer y del archivo index.
  * 2. estado inicial
+ * 3. composeEnhacers -> permite conectar nuestra app en redux con el nevageador para fines de debug unicamente
  */
-const store = createStore(reducer, initalState);
+const store = createStore(reducer, initalState, composeEnhacers());
 
 ReactDOM.render(
     //iniializamos nuestra informacion con elprovider pasandole el store para poder conectar toda la app con los datos iniciales

@@ -55,6 +55,21 @@ function reducer(state, action){
                 playing: state.trends.concat(state.originals).find(item => item.id === Number(action.payload)) || []
             }
 
+        case 'SET_SEARCH':
+            if (action.payload === '') {
+                return {
+                    ...state,
+                    search: [],
+                };
+            }
+            const searchList = [...state.trends, ...state.originals];
+            return {
+                ...state,
+                search: searchList.filter(item => item.title.toLowerCase().includes(action.payload.toLowerCase())) ||
+                //search: state.content.filter((items) => items.title.toLowerCase().includes(action.payload.toLowerCase())) ||
+                [],
+            };
+
         default:
             return state;
        
