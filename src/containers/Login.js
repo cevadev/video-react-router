@@ -96,7 +96,7 @@ import TwitterIcon from '../assets/static/twitter-icon.png';
                     <div><img src={TwitterIcon} alt=""/> Inicia sesión con Twitter</div>
                 </section>
                     <p className="login__container--register">
-                        No tienes ninguna cuenta 
+                        No tienes ninguna cuenta {' '}
                         <Link to="/register">
                             Regístrate
                         </Link>

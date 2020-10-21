@@ -17,7 +17,7 @@ const Home = ({ mylist, trends, originals }) => {
   return(
     <React.Fragment>
       <Header />
-      <Search />
+      <Search isHome={true}/>
       {mylist.length > 0 &&
         <Categories title="Mi Lista">
           <Carousel>
